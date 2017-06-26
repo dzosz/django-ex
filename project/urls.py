@@ -1,7 +1,7 @@
 from django.conf.urls import include, url
 from django.contrib import admin
 
-from welcome.views import index, health
+from welcome.views import index, health, login
 
 urlpatterns = [
     # Examples:
@@ -9,6 +9,7 @@ urlpatterns = [
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^$', index),
+    url(r'^login$', login),
     url(r'^health$', health),
     url(r'^admin/', include(admin.site.urls)),
 ]

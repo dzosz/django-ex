@@ -211,9 +211,15 @@ pre {
 <body>
 
 <script>
+function statusChangeCallback(response) {
+    //alert(JSON.stringify(response, null, 4));
+    console.log(JSON.stringify(response, null, 4));
+}
+
   window.fbAsyncInit = function() {
     FB.init({
-      appId      : '1339373256108250',
+      //appId      : '1339373256108250',
+      appId      : '1340455122666730',
       cookie     : true,
       xfbml      : true,
       version    : 'v2.8'
@@ -232,10 +238,6 @@ pre {
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
 
-function statusChangeCallback(response) {
-    alert(JSON.stringify(response, null, 4));
-}
-
 function checkLoginState() {
   FB.getLoginStatus(function(response) {
     statusChangeCallback(response);
@@ -248,12 +250,23 @@ function checkLoginState() {
             <h1>Welcome to your Django application on OpenShift</h1>
           </hgroup>
 
+        <div class="row">
+          <!-- FACEBOOK -->
           <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="true" data-auto-logout-link="false" data-use-continue-as="false"></div>
             <fb:login-button
-              scope="public_profile,email"
+              scope="public_profile,email,user_friends"
               onlogin="checkLoginState();">
             </fb:login-button>
+        </div>
 
+        <div class="row">
+          <!-- INSTA -->
+            {% if link %}
+            <a href="{{ link }}">Instagram login</a>
+            {% else %}
+            <h3>Welcome {{ user }}. You have logged in with instagram.</h3>
+            {% endif %}
+        </div>
         <div class="row">
           <section class='col-xs-12 col-sm-6 col-md-6'>
             <section>
